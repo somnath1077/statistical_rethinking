@@ -44,7 +44,7 @@ beta_mu = beta.mean(W + 1, L + 1)
 beta_std = beta.std(W + 1, L + 1)
 
 norm_approx = norm.pdf(p_grid, beta_mu, beta_std)
-# Plot both the posterior and the normal approximation
+# Plot both the analytically obtained posterior and the normal approximation
 plt.plot(p_grid, beta_data, 'bo-', label='beta')
 plt.plot(p_grid, norm_approx, 'ro-', label='normal')
 
