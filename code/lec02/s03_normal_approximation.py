@@ -12,9 +12,6 @@ p_grid = np.linspace(start=0, stop=1, num=NUM_PTS)
 prior = [1] * NUM_PTS
 
 # The likelihood is Binomial(n, p). Note that the Beta-Binomial is a conjugate pair.
-# More specifically, if X_1, ..., X_n are iid random variables from a Binomial dist.
-# with parameter p, and p ~ Beta(a, b), then the posterior distribution of p
-# given X_1 = x_1, ..., X_n = x_n is Beta(a + sum(x_1, ..., x_n), b + n - sum(x_1, ..., x_n))
 likelihood = binom.pmf(k=6, n=9, p=p_grid)
 
 # Compute the un-normalized posterior
@@ -35,6 +32,11 @@ print(f'posterior mean = {mu}, posterior standard deviation = {std}')
 norm_approx_posterior = norm.pdf(p_grid, loc=mu, scale=std)
 
 # The Beta dist. is a conjugate pair of the binomial dist
+# More specifically, if X_1, ..., X_n are iid random variables from a Binomial dist.
+# with parameter p, and p ~ Beta(a, b), then the posterior distribution of p
+# given X_1 = x_1, ..., X_n = x_n is Beta(a + sum(x_1, ..., x_n), b + n - sum(x_1, ..., x_n))
+# Since Uniform(0, 1) = Beta(1, 1), the parameter update rule after observing water W times
+# and land L times is Beta(W + 1, L + 1)
 W = 6
 L = 3
 beta_data = beta.pdf(p_grid, W + 1, L + 1)
