@@ -1,0 +1,138 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% In order to compile this file use:
+% xelatex exercises.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{report}
+
+%-------------------------------------------------------
+% THEMES, COLORS
+%-------------------------------------------------------
+\usepackage[top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,mathtools,bm,amsthm}
+\usepackage{underscore}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{algpseudocode}
+\usepackage{rsfso} % for \mathscr
+%--------------------------------------------------------
+% COLOR DEFINITIONS
+%---------------------------------------------------------
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+\definecolor{olivedrab}{rgb}{0.42, 0.56, 0.14}
+\definecolor{darkolivegreen}{rgb}{0.33, 0.42, 0.18}
+\definecolor{chromeyellow}{rgb}{1.0, 0.65, 0.0}
+\definecolor{beige}{rgb}{0.96, 0.96, 0.86}
+\definecolor{bluegreen}{rgb}{3, 166, 155}
+\definecolor{pitchblack}{rgb}{0, 0, 0}
+\definecolor{lightbeige}{rgb}{255, 251, 241}
+\definecolor{mediumgray}{rgb}{183, 183, 183}
+\definecolor{carrotorange}{rgb}{0.93, 0.57, 0.13}
+\definecolor{orange-red}{rgb}{1.0, 0.27, 0.0}
+\definecolor{ferngreen}{rgb}{0.31, 0.47, 0.26}
+\definecolor{darkspringgreen}{rgb}{0.09, 0.45, 0.27}
+\definecolor{cocoabrown}{rgb}{0.82, 0.41, 0.12}
+\definecolor{darkorange}{rgb}{1.0, 0.55, 0.0}
+\definecolor{deepcarrotorange}{rgb}{0.91, 0.41, 0.17}
+%---------------------------------------------------------
+
+%-------------------------------------------------------------------------
+% NEW THEME
+%-------------------------------------------------------------------------
+\definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
+\definecolor{UBCgrey}{rgb}{0.3686, 0.5255, 0.6235} % UBC Grey (secondary)
+
+%\usepackage{helvet}
+%-------------------------------------------------------
+% DEFFINING AND REDEFINING COMMANDS
+%-------------------------------------------------------
+\newcommand\var{\texttt}
+\usepackage{amssymb}
+\renewcommand{\emptyset}{\varnothing}
+
+%-----------------------------------------------------------------------------
+% FONTS TRIED
+%-----------------------------------------------------------------------------
+%\usepackage{ccfonts}
+%\usepackage{mathpazo}
+%\usepackage{newtxtext}
+%\usepackage{newtxmath}
+%-----------------------------------------------------------------------------
+% FONT PACKAGES
+%-----------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+
+%-------------------------------------------------------
+% INFORMATION IN THE TITLE PAGE
+%-------------------------------------------------------
+
+
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{exer}{Exercise}[chapter]
+\newtheorem*{note}{Note}
+\newtheorem*{solution}{Solution}
+
+
+\newcommand{\states}{\ensuremath{\mathcal{S}}}
+\newcommand{\actions}{\ensuremath{\mathcal{A}}}
+\newcommand{\rewards}{\ensuremath{\mathcal{R}}}
+\newcommand{\discount}{\ensuremath{\gamma}}
+\newcommand{\policy}{\ensuremath{\pi}}
+
+\newcommand{\vcdim}{\ensuremath{\text{VCdim}}}
+\newcommand{\algo}{\ensuremath{\mathcal{A}}}
+\newcommand{\hypclass}{\ensuremath{\mathcal{H}}}
+\newcommand{\parity}[1]{\ensuremath{\mathcal{H}_{#1\text{-parity}}}}
+\newcommand{\rect}[1]{\ensuremath{\mathcal{H}_{\text{rect}}^{#1}}}
+\newcommand{\conj}[1]{\ensuremath{\mathcal{H}_{\text{con}}^{#1}}}
+\newcommand{\mconj}[1]{\ensuremath{\mathcal{H}_{\text{mcon}}^{#1}}}
+\newcommand{\zeroone}{\ensuremath{\operatorname{0-1}}}
+\newcommand{\dom}{\ensuremath{\mathcal{X}}}
+\newcommand{\range}{\ensuremath{\mathcal{Y}}}
+\newcommand{\Nat}{\ensuremath{\mathbf{N}}}
+\newcommand{\dist}{\ensuremath{\mathcal{D}}}
+\newcommand{\R}{\ensuremath{\mathbf{R}}}
+\newcommand{\Rone}{\ensuremath{\mathbf{R}}}
+\newcommand{\Rpos}{\ensuremath{\mathbf{R}_{+}}}
+\newcommand{\Rtwo}{\ensuremath{\mathbf{R}^2}}
+\newcommand{\Prtwo}[2]{\mathbf{Pr}_{#1} \left \{ #2 \right \}}
+\newcommand{\Prone}[1]{\mathbf{Pr} \left \{ #1 \right \}}
+\newcommand{\Exptwo}[2]{\mathbf{E}_{#1} \left [ #2 \right ]}
+\newcommand{\Expone}[1]{\mathbf{E} \left [ #1 \right ]}
+\newcommand{\ceiling}[1]{\ensuremath{\left \lceil #1 \right \rceil}}
+\newcommand{\angular}[1]{\ensuremath{\left \langle #1 \right \rangle}}
+\newcommand{\floor}[1]{\ensuremath{\left \lfloor #1 \right \rfloor}}
+\newcommand{\dx}{\ensuremath{\text{d}}}
+\newcommand{\ind}{\ensuremath{\mathbf{1}}}
+\newcommand{\basisvec}{\ensuremath{\mathbf{e}}}
+\newcommand{\vect}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\defn}{\ensuremath{\coloneqq}}
+%\newcommand{\zeroone}{\ensuremath{\operatorname{0-1}}}
+\renewcommand{\epsilon}{\varepsilon}
+
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\argmin}{argmin}
+
+\title{Statistical Rethinking: Notes and Selected Exercises}
+
+\author{Somnath Sikdar}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\setcounter{chapter}{1}
+
+\input{ch02}
+\end{document}
+
