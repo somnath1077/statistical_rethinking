@@ -35,7 +35,7 @@ norm_approx_posterior = norm.pdf(p_grid, loc=mu, scale=std)
 # More specifically, if X_1, ..., X_n are iid random variables from a Binomial dist.
 # with parameter p, and p ~ Beta(a, b), then the posterior distribution of p
 # given X_1 = x_1, ..., X_n = x_n is Beta(a + sum(x_1, ..., x_n), b + n - sum(x_1, ..., x_n))
-# Since Uniform(0, 1) = Beta(1, 1), the parameter update rule after observing water W times
+# Since Uniform(0, 1) = Beta(1, 1), the hyper-parameter update rule after observing water W times
 # and land L times is a = W + 1 and b = L + 1
 W = 6
 L = 3
