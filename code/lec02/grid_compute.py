@@ -17,8 +17,9 @@ unnormal_posterior = likelihood * prior
 
 # Normalized posterior
 posterior = unnormal_posterior / sum(unnormal_posterior)
+print(f'Sum of posterior values = {sum(posterior)}')
 
-plt.plot(p_grid, posterior, 'bo-')
+plt.plot(p_grid, posterior, 'o-')
 plt.xlabel('Probability of water')
 plt.ylabel('Posterior probability')
 plt.title(f'Sample= WLWWWLWLW; number of grid points = {NUM_PTS}')
