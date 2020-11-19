@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import binom
 
-NUM_PTS = 1000
+NUM_PTS = 20
 # The sample is WLWWWLWLW. We use 1's for W and 0's for L
 SAMPLE = [1, 0, 1, 1, 1, 0, 1, 0, 1]
 
@@ -21,11 +21,11 @@ for s in SAMPLE:
     # Normalized posterior becomes the new prior for the next iteration
     posterior = unnormalized_posterior / sum(unnormalized_posterior)
 
-    plt.plot(p_grid, posterior, label=f'{count}')
+    plt.plot(p_grid, posterior, 'o-', label=f'{count}')
     prior = posterior
     count += 1
 
-plt.xlabel('Probability of water')
+plt.xlabel('Fraction of water')
 plt.ylabel('Posterior probability')
 plt.legend()
 plt.title(f'number of grid points = {NUM_PTS}')

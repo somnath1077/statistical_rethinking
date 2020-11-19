@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import binom
 
-NUM_PTS = 1000
+NUM_PTS = 20
 
 p_grid = np.linspace(start=0, stop=1, num=NUM_PTS)
 
@@ -18,7 +18,9 @@ unnormal_posterior = likelihood * prior
 # Normalized posterior
 posterior = unnormal_posterior / sum(unnormal_posterior)
 
-plt.plot(p_grid, posterior)
+print(list(posterior))
+
+plt.plot(p_grid, posterior, 'bo-')
 plt.xlabel('Probability of water')
 plt.ylabel('Posterior probability')
 plt.title(f'Sample= WLWWWLWLW; number of grid points = {NUM_PTS}')
