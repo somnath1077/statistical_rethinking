@@ -25,7 +25,7 @@ posterior = unnormalized_posterior / sum(unnormalized_posterior)
 mu = np.sum(p_grid * posterior)
 
 # The variance = E[X**2] - (E[X])**2
-exp_x_squared = np.sum([x ** 2 for x in p_grid] * posterior)
+exp_x_squared = np.sum(np.square(p_grid) * posterior)
 std = np.sqrt(exp_x_squared - mu ** 2)
 
 print(f'posterior mean = {mu}, posterior standard deviation = {std}')
