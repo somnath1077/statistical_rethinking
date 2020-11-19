@@ -17,9 +17,9 @@ for s in SAMPLE:
     # what is the likelihood given the next sample point
     likelihood = binom.pmf(k=s, n=1, p=p_grid)
     # Compute the un-normalized posterior
-    unnormal_posterior = likelihood * prior
+    unnormalized_posterior = likelihood * prior
     # Normalized posterior becomes the new prior for the next iteration
-    posterior = unnormal_posterior / sum(unnormal_posterior)
+    posterior = unnormalized_posterior / sum(unnormalized_posterior)
 
     plt.plot(p_grid, posterior, label=f'{count}')
     prior = posterior
