@@ -4,12 +4,54 @@
 Suppose there are two species of panda bear. Both are equally common in the 
 wild and live in the same places. They look exactly alike and eat the same 
 food, and there is yet no genetic assay capable of telling them apart. They 
-differ however in their family sizes. Species A gives birth to twins 10\% of 
-the time, otherwise birthing a single infant. Species B births twins 20\% of 
+differ however in their family sizes. Species $A$ gives birth to twins 10\% of 
+the time, otherwise birthing a single infant. Species $B$ births twins 20\% of 
 the time, otherwise birthing singleton infants. Assume these numbers are 
 known with certainty, from many years of field research.
 Now suppose you are managing a captive panda breeding program. You have a new 
 female panda of unknown species, and she has just given birth to twins. What 
 is the probability that her next birth will also be twins?
 \end{exer}
+\begin{solution}
+We have to estimate $\Prone{\text{twins again} \vert \text{twins before}}$. 
+We may write this conditional probability as follows:
+\begin{align} \label{eqn:twins}
+    \Prone{\text{twins again} \vert \text{twins before}} & = 
+        \Prone{\text{twins again} \vert A, \text{twins before}} \cdot 
+        \Prone{A \vert \text{twins before}} + \nonumber \\
+        & \quad \quad 
+        \Prone{\text{twins again} \vert B, \text{twins before}} \cdot 
+        \Prone{B \vert \text{twins before}} \nonumber \\
+        & = \Prone{\text{twins again} \vert A} \cdot 
+        \Prone{A \vert \text{twins before}} + \nonumber\\
+        & \quad \quad 
+        \Prone{\text{twins again} \vert B} \cdot 
+        \Prone{B \vert \text{twins before}}
+\end{align}
+
+The last equality follows, since when we condition on any given species, 
+the probability of having twins again is independent of whether twins 
+were born before. Strictly speaking, this is also an assumption but a reasonable 
+one. As such, we do not use the ``before'' and ``again'' 
+qualifiers. To evaluate the last expression, we calculate 
+$\Prone{ \cdot \vert \text{twins}}$ for both species $A$ and $B$.  Using 
+Bayes' Theorem, we obtain:
+\begin{align*}
+    \Prone{A \vert \text{twins}} & = 
+        \frac{\Prone{A \vert \text{twins}} \cdot \Prone{A}}
+             {\Prone{A \vert \text{twins}} \cdot \Prone{A} + \Prone{B \vert \text{twins}} \cdot \Prone{B}} \\
+        & = \frac{0.10 \times 0.5}{0.5 \times (0.1 + 0.20)} \\
+        & = \frac{1}{3}.
+\end{align*}
+
+A similar calculation yields $\Prone{B \vert \text{twins}} = \frac{2}{3}$. The 
+final expression in~(\ref{eqn:twins}) evaluates to 
+\[
+0.10 \times \frac{1}{3} + 0.20 \times \frac{2}{3} = \frac{1}{6} = 0.17.
+\]
+This probability lies between $0.10$ and $0.20$ as expected and lies closer 
+to $0.20$ than $0.10$. This is also clear since if the panda has had twins before, 
+it is more likely to be of species $B$ than species $A$. Hence it is more likely
+that she will birth twins again.
+\end{solution}
 
