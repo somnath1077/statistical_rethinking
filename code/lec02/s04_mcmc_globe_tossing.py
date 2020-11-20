@@ -15,6 +15,7 @@ L = 3
 
 for i in range(1, NUM_PTS):
     p_new = norm.rvs(loc=p[i - 1], scale=0.1, size=1)
+
     if p_new < 0:
         p_new = abs(p_new)
     if p_new > 1:
@@ -22,6 +23,7 @@ for i in range(1, NUM_PTS):
 
     q0 = binom.pmf(k=W, n=W + L, p=p[i - 1])
     q1 = binom.pmf(k=W, n=W + L, p=p_new)
+    
     p[i] = np.where(uniform.rvs(loc=0, scale=1, size=1) < q1 / q0, p_new, p[i - 1])
 
 analytical_posterior = beta.pdf(p_grid, W + 1, L + 1)
