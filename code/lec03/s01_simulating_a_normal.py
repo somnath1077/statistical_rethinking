@@ -7,7 +7,7 @@ from scipy.stats import norm, uniform
 sns.set_style('whitegrid')
 
 NUM_PEOPLE = 1000
-NUM_TOSSES = 200
+NUM_TOSSES = 20
 
 dist_from_center_line = [sum(uniform.rvs(loc=-1, scale=2, size=NUM_TOSSES)) for _ in range(NUM_PEOPLE)]
 
@@ -20,7 +20,7 @@ max_dist = np.max(dist_from_center_line)
 d_range = np.linspace(min_dist, max_dist, NUM_PEOPLE)
 normal_data = norm.pdf(x=d_range, loc=sample_mu, scale=sample_sd)
 
-sns.kdeplot(dist_from_center_line)
+sns.distplot(dist_from_center_line)
 
 plt.xlabel('Distance from center line')
 plt.ylabel('Number of people')
