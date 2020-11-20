@@ -2,20 +2,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
-from scipy.stats import binom, norm
+from scipy.stats import norm, uniform
 
 sns.set_style('whitegrid')
 
 NUM_PEOPLE = 1000
 NUM_TOSSES = 200
 
-dist_from_center_line = np.zeros(NUM_PEOPLE)
-
-for i in range(NUM_TOSSES):
-    tosses = binom.rvs(n=1, p=0.5, size=NUM_PEOPLE)
-    # convert 0s to -1
-    steps_to_move = np.where(tosses == 0, -1, 1)
-    dist_from_center_line += steps_to_move
+dist_from_center_line = [sum(uniform.rvs(loc=-1, scale=2, size=NUM_TOSSES)) for _ in range(NUM_PEOPLE)]
 
 sample_mu = np.mean(dist_from_center_line)
 sample_sd = np.std(dist_from_center_line)
