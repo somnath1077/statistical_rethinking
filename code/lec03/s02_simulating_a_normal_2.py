@@ -38,3 +38,4 @@ def dist_plot(vals, norm_compare=False):
 dist_plot(growth_rates, norm_compare=True)
 dist_plot(big, norm_compare=True)
 dist_plot(small, norm_compare=True)
+dist_plot(np.log(big), norm_compare=True)
