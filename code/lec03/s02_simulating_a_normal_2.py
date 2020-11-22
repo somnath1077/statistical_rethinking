@@ -20,7 +20,7 @@ small = [np.prod(uniform.rvs(loc=1.0, scale=0.01, size=NUM_SAMPLES))
 
 
 def dist_plot(vals, norm_compare=False):
-    sns.distplot(vals, label='Distribution plot')
+    sns.kdeplot(vals, label='Distribution plot')
     if norm_compare:
         sample_mu = np.mean(vals)
         sample_sd = np.std(vals)
@@ -33,6 +33,8 @@ def dist_plot(vals, norm_compare=False):
         plt.plot(d_range, normal_data, linestyle='--', color='black', label='Normal approximation')
     plt.legend()
     plt.show()
+
+    print(f'Sample mean = {sample_mu}, sample sd = {sample_sd}')
 
 
 dist_plot(growth_rates, norm_compare=True)
