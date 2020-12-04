@@ -5,7 +5,7 @@ can be found here:
 https://youtu.be/4WVelCswXo4
 
 The original code in the book and lectures is in R, but here we have ported it
-to Python. The virtual environment used was created using the environment.yml
+to Python + PyMC3. The virtual environment used was created using the environment.yml
 file created by the folks who ported the code to PYMC3 + Python
 (check out: https://github.com/pymc-devs/resources/blob/master/Rethinking).
 In Anaconda, the command to create the virtual environment is:
