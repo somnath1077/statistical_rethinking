@@ -3,4 +3,7 @@ scipy
 pandas
 matplotlib
 seaborn
+pymc3
 arviz
+plotnine
+
