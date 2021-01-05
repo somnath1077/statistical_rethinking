@@ -14,3 +14,12 @@ conda env create -f environment.yml
 ```
 However the code in this repo is _not_ a blind-copy of the previously
 mentioned github repo.
+
+Some other resources for specific topics are listed below:
+
+*Mixed Effect Models*
+
+* https://ademos.people.uic.edu/Chapter17.html
+* https://stats.idre.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/
+* Tutorial by Bodo Winter: https://arxiv.org/pdf/1308.5499.pdf
+
