@@ -12,8 +12,7 @@ In Anaconda, the command to create the virtual environment is:
 ```
 conda env create -f environment.yml
 ```
-However the code in this repo is _not_ a blind-copy of the previously
-mentioned github repo.
+This is work in progress as I follow the lectures and work through the book. 
 
 Some other resources for specific topics are listed below:
 
