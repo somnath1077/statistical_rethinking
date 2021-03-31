@@ -22,7 +22,7 @@ def grad_U(x, y, q, a=0, b=1.0, c=0, d=1.0):
     grad_mu_x = np.sum(x - mu_x) - (mu_x - a) / b ** 2
     grad_mu_y = np.sum(y - mu_y) - (mu_y - c) / d ** 2
 
-    return np.array([grad_mu_x, grad_mu_y])
+    return np.array([-1 * grad_mu_x, -1 * grad_mu_y])
 
 
 def HMC2(U: Callable, grad_U: Callable, epsilon: float, L: int, current_q: np.array, x: np.array, y: np.array):
