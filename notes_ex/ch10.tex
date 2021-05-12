@@ -1,0 +1,48 @@
+\chapter{Generalized Linear Models}
+
+This is a re-derivation of the result that the normal distribution with variance 
+$\sigma^2$ has the largest entropy amongst all distributions defined on 
+$[-\infty, +\infty]$ with variance $\sigma^2$. Let $p(x)$ be the pdf of the 
+normal distribution with mean $\mu$ and variance $\sigma^2$. Let $q(x)$ be a 
+pdf with the same variance. Since the entropy of a distribution does not depend
+on its mean, we may assume that the mean of $q(x)$ is $\mu$. 
+
+The entropy $H(p)$ of the normal distribution is:
+\begin{align*}
+    H(p) & = - \int_{- \infty}^{+ \infty} p(x) \log p(x) \der x \\
+        & = - \int_{- \infty}^{+ \infty} p(x) \log ((2 \pi \sigma^2)^{-1/2}) \der x
+            + \int_{- \infty}^{+ \infty} p(x) \frac{1}{2} \left ( \frac{x - \mu}{\sigma} \right )^2 \der x \\
+        & = \frac{1}{2} \log (2 \pi \sigma^2) 
+            + \frac{1}{2 \sigma} \int_{- \infty}^{+ \infty} \frac{1}{\sqrt{2 \pi}} \left ( \frac{x - \mu}{\sigma} \right )^2 
+            \exp \left \{- \left ( \frac{x - \mu}{\sigma} \right )^2 \right \} \der x \\
+        & = \frac{1}{2} \log (2 \pi \sigma^2) + 
+            \frac{1}{2 \sigma} \int_{- \infty}^{+ \infty} 
+            \frac{\sigma}{\sqrt{2 \pi}} z^2 \exp \left \{- \frac{z^2}{2} \right \} \der z \\
+        & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2} \E [Z^2] \\
+        & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2} (\Var(Z) + (\E [Z])^2) \\
+        & = \frac{1}{2} \log (2 \pi e \sigma^2).
+\end{align*} 
+
+Now that we have the entropy of the normal, we use the KL-divergence metric 
+to measure the distance of $q(x)$ from $p(x)$. 
+\begin{align*}
+    \kl (q, p) = \int_{- \infty}^{+ \infty} q(x) \log \frac{q(x)}{p(x)} \der x = - H(q) + H(q, p).
+\end{align*}
+At this point, we use the fact that $\kl (q, p) \geq 0$ for all distributions $q$ and $p$.
+This gives us: $H(q, p) \geq H(q)$. We do not know what $H(q)$ is but the expression 
+for $H(q, p)$ can be evaluated quite easily.
+\begin{align*}
+    H(q, p) & = - \int_{- \infty}^{+ \infty} q(x) \log p(x) \der x \\
+            & =  - \int_{- \infty}^{+ \infty} q(x) 
+                \left [ \log \frac{1}{\sqrt{2 \pi \sigma^2}} 
+                - \frac{1}{2} \left ( \frac{x - \mu}{\sigma} \right )^2 \right ] \der x \\
+            & = - \log \frac{1}{\sqrt{2 \pi \sigma^2}}  \int_{- \infty}^{+ \infty} q(x)  + 
+                \frac{1}{2 \sigma^2} \int_{- \infty}^{+ \infty} q(x) \left ( \frac{x - \mu}{\sigma} \right )^2 \\
+            & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2 \sigma^2} \E_{q} [(x - \mu)^2] \\
+            & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2 \sigma^2} \sigma^2 \\
+            & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2} \\
+            & = \frac{1}{2} \log (2 \pi e \sigma^2) \\
+            & = H(p).
+\end{align*}
+So $H(q, p) = H(p)$ and combining this with $H(q, p) \geq H(q)$, we 
+obtain $H(p) \geq H(q)$.
