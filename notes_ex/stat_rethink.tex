@@ -117,10 +117,20 @@
 \newcommand{\defn}{\ensuremath{\coloneqq}}
 %\newcommand{\zeroone}{\ensuremath{\operatorname{0-1}}}
 \renewcommand{\epsilon}{\varepsilon}
-
+\newcommand{\kl}{\ensuremath{D_{\text{KL}}}}
 
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\sd}{\sigma}
+\DeclareMathOperator{\pr}{P}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\Var}{Var}
+% For special timeseries
+\DeclareMathOperator{\IID}{IID}
+\DeclareMathOperator{\WN}{WN}
+% for the differential operator
+\newcommand{\der}{\ensuremath{\mathrm{d}}}
 
 \title{Statistical Rethinking: Notes and Selected Exercises}
 
@@ -134,5 +144,7 @@
 \setcounter{chapter}{1}
 
 \input{ch02}
+\input{ch10}
+
 \end{document}
 
