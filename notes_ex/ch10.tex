@@ -36,8 +36,8 @@ for $H(q, p)$ can be evaluated quite easily.
             & =  - \int_{- \infty}^{+ \infty} q(x) 
                 \left [ \log \frac{1}{\sqrt{2 \pi \sigma^2}} 
                 - \frac{1}{2} \left ( \frac{x - \mu}{\sigma} \right )^2 \right ] \der x \\
-            & = - \log \frac{1}{\sqrt{2 \pi \sigma^2}}  \int_{- \infty}^{+ \infty} q(x)  + 
-                \frac{1}{2 \sigma^2} \int_{- \infty}^{+ \infty} q(x) \left ( \frac{x - \mu}{\sigma} \right )^2 \\
+            & = - \log \frac{1}{\sqrt{2 \pi \sigma^2}}  \int_{- \infty}^{+ \infty} q(x) \der x + 
+                \frac{1}{2 \sigma^2} \int_{- \infty}^{+ \infty} q(x) ( x - \mu )^2 \der x\\
             & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2 \sigma^2} \E_{q} [(x - \mu)^2] \\
             & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2 \sigma^2} \sigma^2 \\
             & = \frac{1}{2} \log (2 \pi \sigma^2) + \frac{1}{2} \\
