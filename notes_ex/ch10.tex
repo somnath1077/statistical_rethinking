@@ -156,3 +156,40 @@ The mean of a Poisson distribution can be easily calculated to be $\lambda \tau$
 This can also be seen from the limiting process under which we derived the Poisson. The mean of a Binomial is $np$ and the variance is $np - np^2$.
 If we consider a situation in which $n \to \infty$, $p \to 0$ and $np$ is a constant, then the variance also tends to $np = \lambda \tau$.
 
+\subsection{Time of First Arrival and Interarrival Times}
+Let $Y_1$ denote the time of the first arrival. Then
+\begin{align*}
+    \Prone{Y_1 > t} & = \Prone{0 \text{ arrivals in } [0, t]} \\
+                    & = e^{-\lambda t}.
+\end{align*}
+Therefore $1 - F_{Y_1}(t) =  e^{- \lambda t}$ and this yields that $f_{Y_1}(t) = \lambda e^{-\lambda t}$. Thus the time of the first
+arrival is exponentially distributed. Now after the first arrival, one can think of the Poisson process ``restarting'' so that the
+time till the next arrival is also exponentially distributed. This is so because of the memorylessness of the Poisson process.
+Let $Y_k$ denote the time of the $k$th arrival and let $T_k$ be the time interval between the $(k - 1)$st and the $k$th arrival
+(also called the $k$th inter-arrival time). Then
+\begin{align*}
+    Y_k & = T_1 + \cdots + T_k  \text{ for } k \in \{1, 2, \ldots\} \\
+    T_k & = Y_k - Y_{k - 1} \text{ for } k \in \{2, 3, \ldots\} \\
+    T_k & \iid \text{Exp}(\lambda) \text{ for } k \in \{1, 2, \ldots\}.
+\end{align*}
+What this means is that if the arrival process is assumed to be Poisson, then the inter-arrival times are exponentially distributed.
+Intrestingly, the converse is also true.
+
+Consider an arrival process with independent inter-arrival times $T_1, \ldots, T_k$ that are all exponentially distributed with
+parameter $\lambda$. Fix a time interval $[0, \tau]$. Then the probability of $0$ arrivals in $[0, \tau]$ is the same as
+$\Prone{T_1 > \tau}$. This is given by:
+\begin{align*}
+\Prone{T_1 > \tau} & = \int_{\tau}^{\infty} \lambda e^{- \lambda t} \dx t \\
+        & = e^{- \lambda \tau}.
+\end{align*}
+But this exactly the expression for $0$ arrivals in a time interval $\tau$ in a Poisson process with rate $\lambda$. Next, consider
+the case of exactly one arrival in the interval $[0, \tau]$. The event of exactly one arrival is the intersection
+of the events that $T_1 = t$, where $0 \leq t \leq \tau$, and $T_2 > \tau - t$.
+\begin{align*}
+    \Prone{1 \text{ arrival in time } [0, \tau]} & = \int_{t = 0}^{\tau} \Prone{T_1 = t \text{ and } T_2 > \tau - t} \dx t \\
+        & = \int_{t = 0}^{\tau} \lambda e^{- \lambda t} \left ( \int_{\tau - t}^{\infty} \lambda e^{-\lambda x } \dx x \right ) \dx t \\
+        & = \int_{t = 0}^{\tau} \lambda e^{- \lambda t} e^{- \lambda (\tau - t)} \dx t \\
+        & = \int_{t = 0}^{\tau} \lambda e^{- \lambda \tau} \\
+        & = \lambda \tau e^{- \lambda \tau}.
+\end{align*}
+Again, this matches the expression for $1$ arrival in a Poisson process with rate $\lambda$ in an interval of length $\tau$.
