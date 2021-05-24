@@ -93,3 +93,60 @@ As a matter of fact,
 \end{align*}
 which matches with intuitive result that if the probability of a $1$ is $p$, then the expected
 number of $1$s in $n$ trials is $np$.
+
+\section{The Poisson and Related Families of Distributions}
+
+The Poisson distribution is closely connected to distributions such as the binomial, exponential and the discrete Gamma
+(known as the Erlang distribution). To understand this connection, we begin with a description of Poisson process.
+A Poisson process is an arrival process that is described by a function $P(k, \tau)$ that gives the probability
+of $k$ arrivals in a time interval of length $\tau$ and which satisfies the following conditions:
+\begin{enumerate}
+    \item $P(k, \tau)$ is the same for all intervals of length $\tau$;
+    \item the number of arrivals during a particular time interval is independent of the history of arrivals outside
+        this time interval;
+    \item there exists a constant $\lambda$ such that:
+        \begin{itemize}
+            \item $P(0, \tau) = 1 - \lambda \tau + o(\tau)$
+            \item $P(1, \tau) = \lambda \tau + o_1(\tau)$
+            \item $P(k, \tau) = o_k(\tau)$ for $k \in \{2, 3, \ldots\}$
+        \end{itemize}
+\end{enumerate}
+The last condition states that in the regime of small time intervals, the probability of a single arrival in a time interval
+of length $\tau$ is proportional to the length of the time interval. The functions $o(\tau), o_k(\tau)$ satisfy the conditions:
+\[
+    \lim_{\tau \to 0} \frac{o(\tau)}{\tau} = 0, \quad \lim_{\tau \to 0} \frac{o_k(\tau)}{\tau} \text{ for } k \in \{1, 2, \ldots\}.
+\]
+The functions $o(\tau)$ and $o_k(\tau)$ can be thought of as the higher-order terms in a Taylor series expansion of function of $\tau$.
+
+\subsection{Number of arrivals}
+In order to compute a closed-form expression for $P(k, \tau)$, imagine dividing the time interval $\tau$ in $n$ equal disjoint
+pieces intervals, each of length $\delta$. If $n$ is large enough, then the probability of a single arrival in a time interval of length $\delta$
+is approximately $\lambda \delta$ and that of two or more arrivals is $0$. Since the arrivals in each time window of length
+$\delta$ is independent of the arrivals in the other intervals, we may approximate this using a Bernoulli distribution with
+success probability $p = \lambda \delta$ and $n = \tau / \delta$ trials. The point to note is that $np = \lambda \tau$
+is a constant. Thus the probability of $k$ successes is:
+\begin{align*}
+    P(k, \tau) & = {n \choose k} p^{k} (1 - p)^{n - k} \\
+               & = \frac{n!}{(n - k)! k!} \left ( \frac{\lambda \tau}{n}\right )^k \left ( 1 - \frac{\lambda \tau}{n} \right )^{n - k} \\
+               & = \frac{n (n - 1) \cdots (n - k + 1)}{n^k} \cdot \frac{1}{k!} \cdot (\lambda \tau)^{k}
+                    \cdot \left ( 1 - \frac{\lambda \tau}{n} \right )^{-k} \cdot \left ( 1 - \frac{\lambda \tau}{n} \right )^{n} \\
+               & = \frac{n}{n} \left ( 1 - \frac{1}{n} \right ) \cdots \left ( 1 - \frac{k - 1}{n} \right ) \cdot \frac{1}{k!} \cdot (\lambda \tau)^{k}
+                    \cdot \left ( 1 - \frac{\lambda \tau}{n} \right )^{-k} \cdot \left ( 1 - \frac{\lambda \tau}{n} \right )^{n}.
+\end{align*}
+
+Fix $k$ and let $n \to \infty$. In the limit we obtain:
+\[
+    P(k, \tau) = \frac{(\lambda \tau)^k}{k!} e^{- \lambda \tau}.
+\]
+Note that $P(0, \tau) = e^{- \lambda \tau}$ and $P(1, \tau) = \lambda \tau e^{- \lambda \tau}$. Recall that the Taylor series
+for an infinitely differentiable function at $x = 0$ can be written as:
+\[
+    f(0 + \delta) = f(0) + f^{(1)}(0) \delta + \frac{f^{(2)}(0)}{2!} \delta^2 + \cdots + \frac{f^{(n)}(0)}{n!} \delta^n + \cdots
+\]
+The Taylor series expansion for $e^{-\lambda \tau}$ is:
+\[
+    e^{-(0 + \lambda \tau)} = 1 - \lambda \tau + \frac{(\lambda \tau)^2}{2!} - \frac{(\lambda \tau)^3}{3!} +
+                        \cdots + (-1)^n \frac{(\lambda \tau)^n}{n!} + \cdots
+\]
+Using this, we obtain that $P(0, \tau) =  1 - \lambda \tau + o(\tau)$ and $P(1, \tau) = \lambda \tau + o_1(\tau)$, consistent with
+the small-interval probability specifications.
