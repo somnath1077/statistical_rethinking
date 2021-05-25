@@ -192,4 +192,27 @@ of the events that $T_1 = t$, where $0 \leq t \leq \tau$, and $T_2 > \tau - t$.
         & = \int_{t = 0}^{\tau} \lambda e^{- \lambda \tau} \\
         & = \lambda \tau e^{- \lambda \tau}.
 \end{align*}
-Again, this matches the expression for $1$ arrival in a Poisson process with rate $\lambda$ in an interval of length $\tau$.
+Again, this matches the expression for $1$ arrival in a Poisson process with rate $\lambda$ in an interval of length $\tau$. We will 
+not show the full derivation here.
+
+\subsection{Time of $k$th Arrival}
+The time of the $k$th arrival~$Y_k$ follows a discrete Gamma or Erlang distribution. Let $f_{Y_k}$ be the pdf of the 
+distribution. Imagine that the $k$th arrival happens in a time interval $[y, y + \delta]$. Now the $k$th arrival takes place 
+in $[y, y + \delta]$ iff 
+\begin{itemize}
+    \item $A$: $k - 1$ arrivals happen in the time interval $[0, y]$, and 
+    \item $B$: exactly one arrival happens in $[y, y + \delta]$. 
+\end{itemize}
+\begin{align*}
+    \Prone{y \leq Y_k \leq y + \delta} & = \Prone{A} \cdot \Prone{B} \\
+        & = \frac{(y \lambda)^{k - 1}}{(k - 1)!} e^{- \lambda y} \cdot y \delta \\
+        & = \delta \cdot \frac{y^k \lambda^{k - 1}}{(k - 1)!} e^{- \lambda y}.  
+\end{align*}  
+Thus 
+\[
+    \Prone{Y_k = y} = \frac{y^k \lambda^{k - 1}}{(k - 1)!} e^{- \lambda y}.
+\]
+This is the discrete version of the Gamma distribution which is usually stated in terms of the parameters $\alpha$ and $\beta$, instead of $k$ and $\lambda$. 
+\[
+    \text{Gamma}(y \mid \alpha, \beta) =  \frac{\beta^{\alpha - 1}}{\Gamma(\alpha)} y^{\alpha} e^{- \beta y}.
+\]
