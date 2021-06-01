@@ -1,0 +1,26 @@
+\chapter{Notes on WAIC and LOO}
+
+These notes are based on the paper \emph{Practical Bayesian model evaluation 
+using leave-one-out cross-validation and WAIC} by Aki Vehtari, Andrew Gelman and 
+Jonah Gabry.
+
+Consider data $y = (y_1, \ldots, y_n)$ modeled as independent given parameters $\theta$. 
+We can then write: $p(y \mid \theta) = \prod_{i} p(y_i \mid \theta)$. Firstly, 
+why is this assumption made in Bayesian Statistics? To understand this, consider
+the case when we have used some data $y$ to update our prior 
+beliefs $p(\theta)$ to the posterior $p(\theta \mid y)$. Now assume that we have
+some more data $z$. The new posterior is $p(\theta \mid y, z)$. Does this depend
+on the \emph{order} in which we have seen the data? Intuitively, it shouldn't. 
+Consider the expression for $p(\theta \mid y, z)$:
+\[
+    p(\theta \mid y, z) = \frac{p(y, z \mid \theta) p(\theta)}{p(y, z)}.
+\]
+If we assume that the data is independent given the parameters, then the 
+right-hand side simplifies to:
+\[
+    \frac{p(y \mid \theta) p(z \mid \theta) p(\theta)}
+    {\int p(y \mid \theta') p(z \mid \theta') p(\theta') \dx \theta'},
+\]
+which does not depend on the order in which the data $y$ and $z$ arrive. 
+
+
