@@ -5,22 +5,38 @@ using leave-one-out cross-validation and WAIC} by Aki Vehtari, Andrew Gelman and
 Jonah Gabry.
 
 Consider data $y = (y_1, \ldots, y_n)$ modeled as independent given parameters $\theta$. 
-We can then write: $p(y \mid \theta) = \prod_{i} p(y_i \mid \theta)$. Firstly, 
-why is this assumption even made in Bayesian statistics? To understand this, consider
-the case when we have used some data $y$ to update our prior 
-beliefs $p(\theta)$ to the posterior $p(\theta \mid y)$. Now assume that we have
-some more data $z$. The new posterior is $p(\theta \mid y, z)$. Does this depend
-on the \emph{order} in which we have seen the data? Intuitively, it shouldn't. 
-Consider the expression for $p(\theta \mid y, z)$:
+We can then write: $p(y \mymid \theta) = \prod_{i} p(y_i \mymid \theta)$. Firstly, 
+why is this assumption even made in Bayesian statistics? To understand this, 
+assume that we have a prior distribution $p(\theta)$ and consider
+the case when we have used some data $y$ to obtain the posterior 
+$p(\theta \mymid y)$. Let's suppose that we have some more data $z$. The new posterior 
+is $p(\theta \mymid y, z)$. Does this depend on the \emph{order} in which we have 
+seen the data? Intuitively, it shouldn't. Consider the expression for $p(\theta \mymid y, z)$:
 \[
-    p(\theta \mid y, z) = \frac{p(y, z \mid \theta) p(\theta)}{p(y, z)}.
+    p(\theta \mymid y, z) = \frac{p(y, z \mymid \theta) p(\theta)}{p(y, z)}.
 \]
-If we assume that the data is independent given the parameters, then the 
+If we assume that the data are independent given the parameters, then the 
 right-hand side simplifies to:
 \[
-    \frac{p(y \mid \theta) p(z \mid \theta) p(\theta)}
-    {\int p(y \mid \theta') p(z \mid \theta') p(\theta') \dx \theta'},
+    \frac{p(y \mymid \theta) p(z \mymid \theta) p(\theta)}
+    {\int p(y \mymid \theta') p(z \mymid \theta') p(\theta') \dx \theta'},
 \]
-which does not depend on the order in which the data $y$ and $z$ arrive. 
+which does not depend on the order in which the data $y$ and $z$ arrive. Thus 
+there are two primary reasons for making the data independence assumption 
+given the parameters: first, it allows us to write the joint distribution as a product
+of the marginals and second, it guarantees that the posterior is the same irrespective 
+of the order in which the data is seen. 
 
+The other distribution of interest here is the \emph{posterior predictive distribution} 
+$p(\tilde{y} \mymid y)$. This is the distribution of the unobserved values $\tilde{y}$ 
+given the observed values $y$. 
+\begin{align*}
+    p(\tilde{y} \mymid y) & = \int p(\tilde{y}, \theta \mymid y) \dx \theta \\
+        & = \int p(\tilde{y} \mymid \theta, y) p(\theta \mymid y) \dx \theta \\
+        & = \int \frac{p(\tilde{y}, y \mymid \theta)}{p(y \mymid \theta)} p(\theta \mymid y) \dx \theta \\
+        & = \int \frac{p(\tilde{y} \mymid \theta) p(y \mymid \theta)}{p(y \mymid \theta)}  p(\theta \mymid y) \dx \theta \\
+        & = \int p(\tilde{y} \mymid \theta) p(\theta \mymid y) \dx \theta.
+\end{align*}
+Note that we used the data independence property in the above derivation 
+to write $p(\tilde{y}, y \mymid \theta)$ as $p(\tilde{y} \mymid \theta) p(y \mymid \theta)$.
 
